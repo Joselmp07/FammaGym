@@ -9,6 +9,8 @@ import { Role } from '../types/database.types';
 // Pantallas
 import LoginScreen from '../screens/auth/LoginScreen';
 import PassQRScreen from '../screens/client/PassQRScreen';
+import ScannerScreen from '../screens/admin/ScannerScreen';
+import ClientTabNavigator from '../navigation/ClientTabNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -95,10 +97,10 @@ export default function RootNavigator() {
           <Stack.Screen name="Login" component={LoginScreen} />
         ) : userRole === 'admin' || userRole === 'staff' ? (
           // RUTA ADMINISTRATIVA
-          <Stack.Screen name="AdminApp" component={AdminPlaceholder} />
-        ) : (
+          <Stack.Screen name="AdminApp" component={ScannerScreen} />
+        ) : (    
           // RUTA CLIENTE: Carnet Digital con QR
-          <Stack.Screen name="ClientApp" component={PassQRScreen} />
+          <Stack.Screen name="ClientApp" component={ClientTabNavigator} />
         )}
       </Stack.Navigator>
     </NavigationContainer>
